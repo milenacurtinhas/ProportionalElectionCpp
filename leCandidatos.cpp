@@ -37,7 +37,7 @@ tm stringParaTM(const std::string& dataString) {
     return tempo;
 }
 
-void LeCandidato::leitura(/*map<int, Candidato> candidatos, map<int, Partido> partidos, int tipoCandidato, string arquivo*/){
+void LeCandidato::leitura(map<int, Candidato> candidatos, map<int, Partido> partidos, int tipoCandidato, string arquivo){
     ifstream inputStream("teste.csv");
     string linha;
     getline(inputStream, linha);
@@ -102,6 +102,7 @@ void LeCandidato::leitura(/*map<int, Candidato> candidatos, map<int, Partido> pa
         Candidato::Genero gen;
         Candidato::DestinacaoVotos destVotos;
         Candidato::SituacaoCandidato stCandidato;
+        Partido::Federacao temFederacao;
 
         if(stoi(candidatoEleito) == 2 || stoi(candidatoEleito) == 3){
             candEleito = Candidato::CandidatoEleito::ELEITO;
@@ -130,15 +131,24 @@ void LeCandidato::leitura(/*map<int, Candidato> candidatos, map<int, Partido> pa
         else{
             stCandidato = Candidato::SituacaoCandidato::INDEFERIDO;
         }
+        if(stoi(numeroFederacao) == -1){
+            temFederacao = Partido::Federacao::NAO_TEM_FEDERACAO;
+        }
+        else{
+            temFederacao = Partido::Federacao::TEM_FEDERACAO;
+        }
+
+
         tm data;
         data = stringParaTM(dataNascimento);
 
         int num = stoi(numero);
 
-        Partido p = Partido.verificaPartido(Integer.parseInt(numeroPartido), siglaPartido, nomePartido, Federacao.getFederacao(Integer.parseInt(numeroFederacao)), partidos);
+        Partido p = verificaPartido(stoi(numeroPartido), siglaPartido, nomePartido, temFederacao, partidos);
 
         if(stoi(cargo) == tipoCandidato && destVotos != Candidato::DestinacaoVotos::INVALIDO){
-            Candidato c(num, nome, /*new Partido(),*/ data, candEleito, gen, destVotos, stCandidato);
+            Candidato c(num, nome, p, data, candEleito, gen, destVotos, stCandidato);
+            candidatos.insert(make_pair(numero, c));
         }
         
         c.imprimeCandidato();

@@ -7,11 +7,13 @@
 
 using namespace std;
 
+class Candidato;
+
 class Partido{
 public:
     enum class Federacao : u_int8_t {TEM_FEDERACAO, NAO_TEM_FEDERACAO};
     Partido(){};
-    Partido(int numeroPartido, string siglaPartido, string nomePartido, Federacao federacao);
+    Partido(int &numeroPartido, string &siglaPartido, string &nomePartido, Federacao &federacao);
     void setVotosNominais(int votosNominais);
     int getNumeroPartido();
     string getNomePartido();
@@ -20,8 +22,8 @@ public:
     string getSiglaPartido();
     Federacao getFederacao();
     //List<Candidato> getCandidatos();
-    Partido verificaPartido(int numeroPartido, String siglaPartido, String nomePartido, Federacao f, map<int, Partido> partidos);
-    /*void adicionaCandidatos(Candidato c);
+    Partido verificaPartido(int numeroPartido, String siglaPartido, String nomePartido, Federacao f, map<int, Partido> &partidos);
+    void adicionaCandidato(Candidato &c);/*
     void setLegendaPartido(int legendaPartido);
     int calculaEleitos();*/
 
@@ -34,7 +36,7 @@ private:
     int legendaPartido;
     int votosNominais;
     Federacao federacao;
-    //List<Candidato> candidatos = new ArrayList<>();
+    map<Candidato> candidatos;
 };
 
 #endif // PARTIDO_H

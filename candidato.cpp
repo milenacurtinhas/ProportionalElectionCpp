@@ -3,10 +3,11 @@
 
 using namespace std;
 
-Candidato::Candidato(int &numero, string &nomeUrna, /*Partido *partido,*/ tm dataNascimento, CandidatoEleito &candidatoEleito, 
+Candidato::Candidato(int &numero, string &nomeUrna, Partido &partido, tm dataNascimento, CandidatoEleito &candidatoEleito, 
                         Genero &genero, DestinacaoVotos &destVotos, SituacaoCandidato &situacao) : numero(numero), nomeUrna(nomeUrna), 
-                        /*partido(partido),*/ dataNascimento(dataNascimento), candidatoEleito(candidatoEleito), genero(genero),
+                        partido(partido), dataNascimento(dataNascimento), candidatoEleito(candidatoEleito), genero(genero),
                         destinacaoVotos(destVotos), situacao(situacao){
+    partido.adicionaCandidato(this);
 };
 
 void Candidato::imprimeCandidato(){

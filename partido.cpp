@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Partido::Partido(int numeroPartido, string siglaPartido, string nomePartido, Federacao federacao) : 
+Partido::Partido(int &numeroPartido, string &siglaPartido, string &nomePartido, Federacao &federacao) : 
                 numeroPartido(numeroPartido), siglaPartido(siglaPartido), nomePartido(nomePartido), federacao(federacao){}
 
 void Partido::imprimePartido(){
@@ -40,13 +40,18 @@ Partido::Federacao Partido::getFederacao(){
     return this->federacao;
 }
 
-Partido::Partido Partido::verificaPartido(int numeroPartido, String siglaPartido, String nomePartido, Federacao f, unordered_map <Integer,Partido> partidos){
-    if(partidos.find(numeroPartido))
-        return partidos[numeroPartido];
-    else{
-        Partido p(numeroPartido, siglaPartido, nomePartido, f);
-        partidos.insert(pair<int, Partido>(numeroPartido, p));
+void Partido::adicionaCandidato(Candidato &candidato){
+    candidatos.insert(candidato.getNumero, candidato);
+}
 
-        return p;
+Partido verificaPartido(int &numeroPartido, string &siglaPartido,string &nomePartido, Federacao &f, map <int,Partido> &partidos){
+    auto it = partidos.find(numeroPartido);
+    if (it != partidos.end()) {
+        return it->second; // Retorna o partido se já existir no mapa
+    } else {
+        Partido p(numeroPartido, siglaPartido, nomePartido, f);
+        partidos.insert(make_pair(numeroPartido, p));
+
+        return p; // Cria e retorna o novo partido
     } 
 }
