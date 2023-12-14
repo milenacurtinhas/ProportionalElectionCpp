@@ -9,6 +9,6 @@ using namespace std;
 int main (int argc, char **argv){
     LeCandidato le;
     le.leitura();
-
+    int i = 1;
     return 0;
 }

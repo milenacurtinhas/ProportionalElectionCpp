@@ -5,6 +5,7 @@
 #include <iostream>
 #include <ctime>
 #include "partido.h"
+#include "data.h"
 
 using namespace std;
 
@@ -15,7 +16,7 @@ public:
     enum class SituacaoCandidato {DEFERIDO, INDEFERIDO };
     enum class DestinacaoVotos {LEGENDA, NOMINAL, INVALIDO};
     Candidato(){};
-    Candidato(int &numero, string &nomeUrna/*, Partido *partido*/, tm &dataNascimento, CandidatoEleito &candidatoEleito, Genero &genero, DestinacaoVotos &destVotos, SituacaoCandidato &situacao);
+    Candidato(int &numero, string &nomeUrna/*, Partido *partido*/, tm dataNascimento, CandidatoEleito &candidatoEleito, Genero &genero, DestinacaoVotos &destVotos, SituacaoCandidato &situacao);
     void setQuantidadeVotos(int quantidadeVotos);
     int getNumero();
     string getNomeUrna();

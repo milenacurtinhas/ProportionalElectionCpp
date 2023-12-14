@@ -1,4 +1,5 @@
 #include "leCandidatos.h"
+#include "data.h"
 
 using namespace std;
 
@@ -130,8 +131,11 @@ void LeCandidato::leitura(/*map<int, Candidato> candidatos, map<int, Partido> pa
         else{
             stCandidato = Candidato::SituacaoCandidato::INDEFERIDO;
         }
+        tm data;
+        data = stringParaTM(dataNascimento);
+
         int num = stoi(numero);
-        Candidato c(num, nome, /*new Partido(),*/ stringParaTM(dataNascimento), candEleito, gen, destVotos, stCandidato);
+        Candidato c(num, nome, /*new Partido(),*/ data, candEleito, gen, destVotos, stCandidato);
         c.imprimeCandidato();
     }
     inputStream.close();

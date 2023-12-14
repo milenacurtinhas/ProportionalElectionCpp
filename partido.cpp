@@ -39,3 +39,14 @@ string Partido::getSiglaPartido(){
 Partido::Federacao Partido::getFederacao(){
     return this->federacao;
 }
+
+Partido::Partido Partido::verificaPartido(int numeroPartido, String siglaPartido, String nomePartido, Federacao f, unordered_map <Integer,Partido> partidos){
+    if(partidos.find(numeroPartido))
+        return partidos[numeroPartido];
+    else{
+        Partido p(numeroPartido, siglaPartido, nomePartido, f);
+        partidos.insert(pair<int, Partido>(numeroPartido, p));
+
+        return p;
+    } 
+}

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -18,9 +19,9 @@ public:
     int getVotosNominais();
     string getSiglaPartido();
     Federacao getFederacao();
-    /*List<Candidato> getCandidatos();
-    static Partido verificaPartido(int numeroPartido, String siglaPartido, String nomePartido, Federacao f, HashMap<Integer,Partido> partidos);
-    void adicionaCandidatos(Candidato c);
+    //List<Candidato> getCandidatos();
+    Partido verificaPartido(int numeroPartido, String siglaPartido, String nomePartido, Federacao f, map<int, Partido> partidos);
+    /*void adicionaCandidatos(Candidato c);
     void setLegendaPartido(int legendaPartido);
     int calculaEleitos();*/
 

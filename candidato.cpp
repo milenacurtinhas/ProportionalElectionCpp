@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Candidato::Candidato(int &numero, string &nomeUrna, /*Partido *partido,*/ tm &dataNascimento, CandidatoEleito &candidatoEleito, 
+Candidato::Candidato(int &numero, string &nomeUrna, /*Partido *partido,*/ tm dataNascimento, CandidatoEleito &candidatoEleito, 
                         Genero &genero, DestinacaoVotos &destVotos, SituacaoCandidato &situacao) : numero(numero), nomeUrna(nomeUrna), 
                         /*partido(partido),*/ dataNascimento(dataNascimento), candidatoEleito(candidatoEleito), genero(genero),
                         destinacaoVotos(destVotos), situacao(situacao){
@@ -13,12 +13,11 @@ void Candidato::imprimeCandidato(){
     cout << "Numero: " << numero << endl;
     cout << "Nome: " << nomeUrna << endl;
 
-   // partido.imprimePartido();
     char data[80]; // Buffer para armazenar a data formatada
     std::strftime(data, 80, "%d/%m/%Y", &dataNascimento);
     
-    cout << "Data de Nascimento: " << data << endl;
-    
+    std::cout << "Data de Nascimento: " << data << std::endl;
+
     cout << "Genero: " << (int)getGenero() << endl;
     cout << "Candidato Eleito: " << (int)getCandidatoEleito() << endl;
     cout << "Destinacao dos Votos: " << (int)getDestinacao() << endl;
@@ -55,7 +54,6 @@ Candidato::CandidatoEleito Candidato::getCandidatoEleito(){
 int Candidato::getQuantidadeVotos(){
     return this->quantidadeVotos;
 }
-
 tm Candidato::getDataNascimento(){
     return this->dataNascimento;
 }
