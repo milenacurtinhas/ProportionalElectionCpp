@@ -11,9 +11,7 @@ class Data{
 public:
     Data(){};
     Data(int &dia, int &mes, int &ano) : dia(dia), mes(mes), ano(ano){};
-    string dataParaString() {auto converterData = [this]() {
-            return std::to_string(dia) + "/" + std::to_string(mes) + "/" + std::to_string(ano);
-        };
+    string dataParaString() { auto converterData = [this]() {return std::to_string(dia) + "/" + std::to_string(mes) + "/" + std::to_string(ano);};
 
         return converterData();
     }
