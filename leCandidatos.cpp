@@ -1,5 +1,4 @@
 #include "leCandidatos.h"
-#include "data.h"
 
 using namespace std;
 
@@ -135,7 +134,13 @@ void LeCandidato::leitura(/*map<int, Candidato> candidatos, map<int, Partido> pa
         data = stringParaTM(dataNascimento);
 
         int num = stoi(numero);
-        Candidato c(num, nome, /*new Partido(),*/ data, candEleito, gen, destVotos, stCandidato);
+
+        Partido p = Partido.verificaPartido(Integer.parseInt(numeroPartido), siglaPartido, nomePartido, Federacao.getFederacao(Integer.parseInt(numeroFederacao)), partidos);
+
+        if(stoi(cargo) == tipoCandidato && destVotos != Candidato::DestinacaoVotos::INVALIDO){
+            Candidato c(num, nome, /*new Partido(),*/ data, candEleito, gen, destVotos, stCandidato);
+        }
+        
         c.imprimeCandidato();
     }
     inputStream.close();
