@@ -9,7 +9,7 @@
 class Votacao{
 public:
     void leitura(map<int, Candidato> candidatos, map<int, Partido> partidos, int tipoCandidato, string arquivo);
-    void setScanner(Scanner lineScanner, int q);
+   
 };
 
 #endif // LEVOTACAO_H

@@ -14,7 +14,7 @@ using namespace std;
 
 class LeCandidato{
 public:
-    static void leitura(map<int, Candidato> candidatos, map<int, Partido> partidos, int tipoCandidato, string arquivo);
+    void leitura(/*map<int, Candidato> candidatos, map<int, Partido> partidos, int tipoCandidato, string arquivo*/);
     static void setStringStream(istringstream lineScanner, int q);
 };
 
