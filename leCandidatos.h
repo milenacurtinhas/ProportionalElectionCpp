@@ -12,10 +12,8 @@
 
 using namespace std;
 
-class LeCandidato{
-public:
-    void leitura(/*map<int, Candidato> candidatos, map<int, Partido> partidos, int tipoCandidato, string arquivo*/);
-    static void setStringStream(istringstream lineScanner, int q);
-};
+
+void leitura(map<int, Candidato> &candidatos, map<int, Partido> &partidos, int tipoCandidato, string arquivo);
+
 
 #endif // LECANDIDATOS_H

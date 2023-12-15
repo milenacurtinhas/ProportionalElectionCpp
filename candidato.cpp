@@ -1,13 +1,12 @@
 #include "candidato.h"
 
-
 using namespace std;
 
 Candidato::Candidato(int &numero, string &nomeUrna, Partido &partido, tm dataNascimento, CandidatoEleito &candidatoEleito, 
                         Genero &genero, DestinacaoVotos &destVotos, SituacaoCandidato &situacao) : numero(numero), nomeUrna(nomeUrna), 
                         partido(partido), dataNascimento(dataNascimento), candidatoEleito(candidatoEleito), genero(genero),
                         destinacaoVotos(destVotos), situacao(situacao){
-    partido.adicionaCandidato(this);
+    
 };
 
 void Candidato::imprimeCandidato(){
@@ -18,7 +17,7 @@ void Candidato::imprimeCandidato(){
     std::strftime(data, 80, "%d/%m/%Y", &dataNascimento);
     
     std::cout << "Data de Nascimento: " << data << std::endl;
-
+    partido.imprimePartido();
     cout << "Genero: " << (int)getGenero() << endl;
     cout << "Candidato Eleito: " << (int)getCandidatoEleito() << endl;
     cout << "Destinacao dos Votos: " << (int)getDestinacao() << endl;

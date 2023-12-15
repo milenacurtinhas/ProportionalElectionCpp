@@ -1,5 +1,5 @@
 #include "leCandidatos.h"
-
+#include <stdio.h>
 using namespace std;
 
 string iso_8859_1_to_utf8(string &str)
@@ -37,19 +37,22 @@ tm stringParaTM(const std::string& dataString) {
     return tempo;
 }
 
-void LeCandidato::leitura(map<int, Candidato> candidatos, map<int, Partido> partidos, int tipoCandidato, string arquivo){
-    ifstream inputStream("teste.csv");
+void leitura(map<int, Candidato> &candidatos, map<int, Partido> &partidos, int tipoCandidato, string arquivo){
+    ifstream inputStream(arquivo);
     string linha;
     getline(inputStream, linha);
 
-    string cargo, numero, nome, numeroPartido, siglaPartido, nomePartido, numeroFederacao,dataNascimento;
+    string cargo, numero, nome, numeroPartido, siglaPartido, numeroFederacao,dataNascimento;
     string genero, candidatoEleito, destinacaoVotos, situacaoCandidato;
     int i = 0;
-    
-    while(getline(inputStream, linha)){
+    string linhaNao;
+
+    while(getline(inputStream, linhaNao)){
+        linha = iso_8859_1_to_utf8(linhaNao);
+
         istringstream linhaStream(linha);
         string coluna;
-
+        i = 0;
         while(getline(linhaStream, coluna, ';')) {
             size_t found_first = coluna.find_first_of('"');
             size_t found_last = coluna.find_last_of('"');
@@ -58,40 +61,41 @@ void LeCandidato::leitura(map<int, Candidato> candidatos, map<int, Partido> part
                 // Remover as aspas do início e do fim da string
                 coluna = coluna.substr(found_first + 1, found_last - found_first - 1);
             }
-            
+
             switch(i++) {
                 case 13:
-                    cargo = iso_8859_1_to_utf8(coluna);
+                    cargo = coluna;
                     break;
                 case 16:
-                    numero = iso_8859_1_to_utf8(coluna);
+                    numero = coluna;
                     break;
                 case 17:
-                    nome = iso_8859_1_to_utf8(coluna);
+                    nome = coluna;
                     break;
                 case 27:
-                    numeroPartido = iso_8859_1_to_utf8(coluna);
+                    numeroPartido = coluna;
                     break;
                 case 28:
-                    siglaPartido = iso_8859_1_to_utf8(coluna);
+                    siglaPartido = coluna;
                     break;
                 case 30:
-                    numeroFederacao = iso_8859_1_to_utf8(coluna);
+                    numeroFederacao = coluna;
                     break;
                 case 42:
-                    dataNascimento = iso_8859_1_to_utf8(coluna);
+                    dataNascimento = coluna;
                     break;
                 case 45:
-                    genero = iso_8859_1_to_utf8(coluna);
+                    genero = coluna;
                     break;
                 case 56:
-                    candidatoEleito = iso_8859_1_to_utf8(coluna);
+                    candidatoEleito = coluna;
                     break;
                 case 67:
-                    destinacaoVotos = iso_8859_1_to_utf8(coluna);
+                    destinacaoVotos = coluna;
+                    cout << destinacaoVotos << endl;
                     break;
                 case 68:
-                    situacaoCandidato = iso_8859_1_to_utf8(coluna);
+                    situacaoCandidato = coluna;
                     break;
                 default:
                     break;
@@ -116,6 +120,9 @@ void LeCandidato::leitura(map<int, Candidato> candidatos, map<int, Partido> part
         else{
             gen = Candidato::Genero::FEMININO;
         }
+        
+        //string valido = iso_8859_1_to_utf8("Válido");
+
         if(!destinacaoVotos.compare("Válido (legenda)")){
             destVotos = Candidato::DestinacaoVotos::LEGENDA;
         }
@@ -143,15 +150,16 @@ void LeCandidato::leitura(map<int, Candidato> candidatos, map<int, Partido> part
         data = stringParaTM(dataNascimento);
 
         int num = stoi(numero);
+        int numPartido = stoi(numeroPartido);
 
-        Partido p = verificaPartido(stoi(numeroPartido), siglaPartido, nomePartido, temFederacao, partidos);
+        Partido p = verificaPartido(numPartido, siglaPartido, temFederacao, partidos);
 
         if(stoi(cargo) == tipoCandidato && destVotos != Candidato::DestinacaoVotos::INVALIDO){
             Candidato c(num, nome, p, data, candEleito, gen, destVotos, stCandidato);
-            candidatos.insert(make_pair(numero, c));
+            candidatos.insert(make_pair(num, c));
+            p.adicionaCandidato(c);
         }
-        
-        c.imprimeCandidato();
     }
+    
     inputStream.close();
 }

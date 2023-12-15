@@ -5,9 +5,10 @@
 #include <iostream>
 #include <ctime>
 #include "partido.h"
-#include "data.h"
 
 using namespace std;
+
+//class Partido;
 
 class Candidato{
 public:

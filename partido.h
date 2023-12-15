@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <list>
 
 using namespace std;
 
@@ -13,30 +14,29 @@ class Partido{
 public:
     enum class Federacao : u_int8_t {TEM_FEDERACAO, NAO_TEM_FEDERACAO};
     Partido(){};
-    Partido(int &numeroPartido, string &siglaPartido, string &nomePartido, Federacao &federacao);
+    Partido(int &numeroPartido, string &siglaPartido, Federacao &federacao);
     void setVotosNominais(int votosNominais);
     int getNumeroPartido();
-    string getNomePartido();
     int getLegendaPartido();
     int getVotosNominais();
     string getSiglaPartido();
     Federacao getFederacao();
-    //List<Candidato> getCandidatos();
-    Partido verificaPartido(int numeroPartido, String siglaPartido, String nomePartido, Federacao f, map<int, Partido> &partidos);
-    void adicionaCandidato(Candidato &c);/*
-    void setLegendaPartido(int legendaPartido);
-    int calculaEleitos();*/
+    list<Candidato> getCandidatos();
+    void adicionaCandidato(Candidato &c);
+    void setLegendaPartido(int legenda);
+    int calculaEleitos();
 
     void imprimePartido();
     
 private:
     int numeroPartido;
     string siglaPartido;
-    string nomePartido;
     int legendaPartido;
     int votosNominais;
     Federacao federacao;
-    map<Candidato> candidatos;
+    map<int, Candidato> candidatos;
 };
+
+Partido verificaPartido(int &numeroPartido, string &siglaPartido, Partido::Federacao &f, map <int,Partido> &partidos);
 
 #endif // PARTIDO_H

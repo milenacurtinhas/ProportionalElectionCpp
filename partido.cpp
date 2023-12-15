@@ -1,15 +1,15 @@
 #include "partido.h"
+#include "candidato.h"
 
 using namespace std;
 
-Partido::Partido(int &numeroPartido, string &siglaPartido, string &nomePartido, Federacao &federacao) : 
-                numeroPartido(numeroPartido), siglaPartido(siglaPartido), nomePartido(nomePartido), federacao(federacao){}
+Partido::Partido(int &numeroPartido, string &siglaPartido, Federacao &federacao) : 
+                numeroPartido(numeroPartido), siglaPartido(siglaPartido), federacao(federacao){}
 
 void Partido::imprimePartido(){
     cout << "Numero do Partido: " << numeroPartido << endl;
     cout << "Sigla do Partido: " << siglaPartido << endl;
-    cout << "Nome do Partido: " << nomePartido << endl;
-    //cout << "Numero da Federacao: " << federacao << endl;
+    cout << "Numero da Federacao: " << (int)federacao << endl;
 }
 
 void Partido::setVotosNominais(int votosNominais){
@@ -18,10 +18,6 @@ void Partido::setVotosNominais(int votosNominais){
 
 int Partido::getNumeroPartido(){
     return this->numeroPartido;
-}
-
-string Partido::getNomePartido(){
-    return this->nomePartido;
 }
 
 int Partido::getLegendaPartido(){
@@ -40,16 +36,41 @@ Partido::Federacao Partido::getFederacao(){
     return this->federacao;
 }
 
-void Partido::adicionaCandidato(Candidato &candidato){
-    candidatos.insert(candidato.getNumero, candidato);
+list<Candidato> Partido::getCandidatos(){
+    list<Candidato> listaCandidatos;
+
+    for(auto it = candidatos.begin(); it != candidatos.end(); ++it){
+        listaCandidatos.push_back(it->second);
+    }
+
+    return listaCandidatos;
 }
 
-Partido verificaPartido(int &numeroPartido, string &siglaPartido,string &nomePartido, Federacao &f, map <int,Partido> &partidos){
+void Partido::adicionaCandidato(Candidato &candidato){
+    candidatos.insert(make_pair(candidato.getNumero(), candidato));
+}
+
+void Partido::setLegendaPartido(int legenda){
+    this->legendaPartido += legenda;
+}
+
+int Partido::calculaEleitos(){
+    int count = 0;
+
+    for(auto it = candidatos.begin(); it != candidatos.end(); ++it){
+        if(it->second.getCandidatoEleito() == Candidato::CandidatoEleito::ELEITO)
+            count++;
+    }
+
+    return count;
+}
+
+Partido verificaPartido(int &numeroPartido, string &siglaPartido, Partido::Federacao &f, map <int,Partido> &partidos){
     auto it = partidos.find(numeroPartido);
     if (it != partidos.end()) {
         return it->second; // Retorna o partido se já existir no mapa
     } else {
-        Partido p(numeroPartido, siglaPartido, nomePartido, f);
+        Partido p(numeroPartido, siglaPartido, f);
         partidos.insert(make_pair(numeroPartido, p));
 
         return p; // Cria e retorna o novo partido
