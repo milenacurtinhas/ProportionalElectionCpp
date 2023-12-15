@@ -5,6 +5,10 @@
         "*.tcc": "cpp",
         "ostream": "cpp",
         "string": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "iosfwd": "cpp",
+        "deque": "cpp",
+        "vector": "cpp",
+        "list": "cpp"
     }
 }

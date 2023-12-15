@@ -14,16 +14,16 @@ class Partido{
 public:
     enum class Federacao : u_int8_t {TEM_FEDERACAO, NAO_TEM_FEDERACAO};
     Partido(){};
-    Partido(int &numeroPartido, string &siglaPartido, Federacao &federacao);
-    void setVotosNominais(int votosNominais);
-    int getNumeroPartido();
-    int getLegendaPartido();
-    int getVotosNominais();
+    Partido(int &numeroPartido, string &siglaPartido, Federacao &federacao, int votosNominais, int legendaPartido);
+    void setVotosNominais(int &votos);
+    int getNumeroPartido() const;
+    int getLegendaPartido() const;
+    int getVotosNominais() const;
     string getSiglaPartido();
     Federacao getFederacao();
     list<Candidato> getCandidatos();
     void adicionaCandidato(Candidato &c);
-    void setLegendaPartido(int legenda);
+    void setLegendaPartido(int &legenda);
     int calculaEleitos();
 
     void imprimePartido();
@@ -37,6 +37,7 @@ private:
     map<int, Candidato> candidatos;
 };
 
-Partido verificaPartido(int &numeroPartido, string &siglaPartido, Partido::Federacao &f, map <int,Partido> &partidos);
+Partido &verificaPartido(int &numeroPartido, string &siglaPartido, Partido::Federacao &f, map <int,Partido> &partidos, int votosNominais, int legendaPartido);
+bool compararPartidos(const Partido& partido1, const Partido& partido2);
 
 #endif // PARTIDO_H

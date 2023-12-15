@@ -17,14 +17,14 @@ public:
     enum class SituacaoCandidato {DEFERIDO, INDEFERIDO };
     enum class DestinacaoVotos {LEGENDA, NOMINAL, INVALIDO};
     Candidato(){};
-    Candidato(int &numero, string &nomeUrna, Partido &partido, tm dataNascimento, CandidatoEleito &candidatoEleito, Genero &genero, DestinacaoVotos &destVotos, SituacaoCandidato &situacao);
-    void setQuantidadeVotos(int quantidadeVotos);
+    Candidato(int &numero, string &nomeUrna, Partido &partido, tm dataNascimento, CandidatoEleito &candidatoEleito, Genero &genero, DestinacaoVotos &destVotos, SituacaoCandidato &situacao, int quantidadeVotos);
+    void setQuantidadeVotos(int &votos, map<int, Partido> &partidos);
     int getNumero();
     string getNomeUrna();
     Partido getPartido();
     CandidatoEleito getCandidatoEleito();
-    int getQuantidadeVotos();
-    tm getDataNascimento();
+    int getQuantidadeVotos() const;
+    tm getDataNascimento() const;
     SituacaoCandidato getSituacao();
     Genero getGenero();
     DestinacaoVotos getDestinacao();
@@ -43,4 +43,5 @@ private:
     int quantidadeVotos; //QT_VOTOS (21)
 };
 
+bool compararCandidatos(const Candidato& candidato1, const Candidato& candidato2);
 #endif // CANDIDATO_H
