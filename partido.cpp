@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Partido::Partido(int &numeroPartido, string &siglaPartido, Federacao &federacao, int votosNominais = 0, int legendaPartido = 0) : 
-                numeroPartido(numeroPartido), siglaPartido(siglaPartido), federacao(federacao){}
+Partido::Partido(int numeroPartido, string &siglaPartido, int legendaPartido, int votosNominais,  Federacao federacao) : 
+                numeroPartido(numeroPartido), siglaPartido(siglaPartido), legendaPartido(legendaPartido), votosNominais(votosNominais),  federacao(federacao){}
 
 void Partido::imprimePartido(){
     cout << "Numero do Partido: " << numeroPartido << endl;
@@ -66,7 +66,7 @@ Partido &verificaPartido(int &numeroPartido, string &siglaPartido, Partido::Fede
     if (it != partidos.end()) {
         return it->second; // Retorna o partido se já existir no mapa
     } else {
-        Partido p(numeroPartido, siglaPartido, f, votosNominais, legendaPartido);
+        Partido p(numeroPartido, siglaPartido, votosNominais, legendaPartido, f);
         partidos.insert(make_pair(numeroPartido, p));
         auto it = partidos.find(numeroPartido);
         return it->second; // Cria e retorna o novo partido

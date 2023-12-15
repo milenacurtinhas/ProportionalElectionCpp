@@ -154,7 +154,7 @@ void leCandidatos(map<int, Candidato> &candidatos, map<int, Partido> &partidos, 
         int num = stoi(numero);
         int numPartido = stoi(numeroPartido);
 
-        Partido &p = verificaPartido(numPartido, siglaPartido, temFederacao, partidos, 0, 0);
+        Partido p = verificaPartido(numPartido, siglaPartido, temFederacao, partidos, 0, 0);
 
         if(stoi(cargo) == tipoCandidato && destVotos != Candidato::DestinacaoVotos::INVALIDO){
             Candidato c(num, nome, p, data, candEleito, gen, destVotos, stCandidato, 0);

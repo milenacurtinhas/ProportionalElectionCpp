@@ -16,7 +16,6 @@ public:
     enum class Genero {FEMININO, MASCULINO};
     enum class SituacaoCandidato {DEFERIDO, INDEFERIDO };
     enum class DestinacaoVotos {LEGENDA, NOMINAL, INVALIDO};
-    Candidato(){};
     Candidato(int &numero, string &nomeUrna, Partido &partido, tm dataNascimento, CandidatoEleito &candidatoEleito, Genero &genero, DestinacaoVotos &destVotos, SituacaoCandidato &situacao, int quantidadeVotos);
     void setQuantidadeVotos(int &votos, map<int, Partido> &partidos);
     int getNumero();

@@ -13,8 +13,7 @@ class Candidato;
 class Partido{
 public:
     enum class Federacao : u_int8_t {TEM_FEDERACAO, NAO_TEM_FEDERACAO};
-    Partido(){};
-    Partido(int &numeroPartido, string &siglaPartido, Federacao &federacao, int votosNominais, int legendaPartido);
+    Partido(int numeroPartido, string &siglaPartido,  int votosNominais, int legendaPartido, Federacao federacao);
     void setVotosNominais(int &votos);
     int getNumeroPartido() const;
     int getLegendaPartido() const;
