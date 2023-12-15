@@ -56,7 +56,11 @@ int main (int argc, char **argv){
         it->second.imprimeCandidato(); // Chamada da função para imprimir cada candidato
     }
     for (auto it = partidos.begin(); it != partidos.end(); ++it) {
-        it->second.imprimePartido(); // Chamada da função para imprimir cada candidato
+         // Chamada da função para imprimir cada candidato
+         it->second.imprimePartido();
+        for(Candidato &candidato : it->second.getCandidatos()){
+            candidato.imprimeCandidato();
+        }
     }*/
 
     return 0;

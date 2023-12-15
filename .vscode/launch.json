@@ -8,10 +8,9 @@
             "name": "(gdb) Iniciar",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/deputado",
-            "args": [],
+            "program": "${workspaceFolder}/deputados",
+            "args": ["--estadual","candidatos.csv","votacao.csv"],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
@@ -27,6 +26,7 @@
                     "ignoreFailures": true
                 }
             ],
+            "cwd": "${workspaceFolder}",
             "preLaunchTask": "build debug"
         }
 

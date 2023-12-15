@@ -37,17 +37,12 @@ Partido::Federacao Partido::getFederacao(){
 }
 
 list<Candidato> Partido::getCandidatos(){
-    list<Candidato> listaCandidatos;
 
-    for(auto it = candidatos.begin(); it != candidatos.end(); ++it){
-        listaCandidatos.push_back(it->second);
-    }
-
-    return listaCandidatos;
+    return candidatos;
 }
 
 void Partido::adicionaCandidato(Candidato &candidato){
-    candidatos.insert(make_pair(candidato.getNumero(), candidato));
+    candidatos.push_back(candidato);
 }
 
 void Partido::setLegendaPartido(int &legenda){
@@ -57,14 +52,10 @@ void Partido::setLegendaPartido(int &legenda){
 int Partido::calculaEleitos(){
     int count = 0;
 
-    for(auto it = candidatos.begin(); it != candidatos.end(); ++it){
-        cout << "eleito" << endl;
-        if(it->second.getCandidatoEleito() == Candidato::CandidatoEleito::ELEITO){
-            
-            cout << "eleito" << endl;
+    for(Candidato &candidato : candidatos){
+        if(candidato.getCandidatoEleito() == Candidato::CandidatoEleito::ELEITO){
             count++;
-        }          
-            
+        }
     }
 
     return count;

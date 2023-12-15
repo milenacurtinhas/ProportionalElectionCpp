@@ -9,6 +9,7 @@
         "iosfwd": "cpp",
         "deque": "cpp",
         "vector": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "algorithm": "cpp"
     }
 }

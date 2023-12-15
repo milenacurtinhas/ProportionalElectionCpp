@@ -34,7 +34,7 @@ private:
     int legendaPartido;
     int votosNominais;
     Federacao federacao;
-    map<int, Candidato> candidatos;
+    list<Candidato> candidatos;
 };
 
 Partido &verificaPartido(int &numeroPartido, string &siglaPartido, Partido::Federacao &f, map <int,Partido> &partidos, int votosNominais, int legendaPartido);
